@@ -1,0 +1,82 @@
+[
+  {
+    "id": "sample-1",
+    "name": "Rolex Datejust 41, Slate Dial",
+    "description": "126334 on Jubilee, fluted bezel. Full set — box, papers, warranty card.",
+    "category": "Watches",
+    "price": 1245000,
+    "currency": "USD",
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "sample-2",
+    "name": "14k Cuban Link Chain, 24\"",
+    "description": "Solid gold, 92 g, hand-polished clasp. Made to order in any length.",
+    "category": "Jewelry",
+    "price": 685000,
+    "currency": "USD",
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "sample-3",
+    "name": "Omega Speedmaster Professional",
+    "description": "Hesalite, manual wind. 2022 full set, unpolished case.",
+    "category": "Watches",
+    "price": 520000,
+    "currency": "USD",
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "sample-4",
+    "name": "2.1 ct Oval Solitaire Ring",
+    "description": "F color, VS1, GIA certified. Platinum hidden-halo setting.",
+    "category": "Jewelry",
+    "price": 1890000,
+    "currency": "USD",
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "sample-5",
+    "name": "Cartier Santos Medium",
+    "description": "WSSA0029, steel on steel with extra leather strap. 2023 papers.",
+    "category": "Watches",
+    "price": 645000,
+    "currency": "USD",
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "sample-6",
+    "name": "Diamond Tennis Bracelet, 5 ct",
+    "description": "14k white gold, natural stones, double safety clasp.",
+    "category": "Jewelry",
+    "price": 425000,
+    "currency": "USD",
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "sample-7",
+    "name": "Tudor Black Bay 58, Navy",
+    "description": "M79030B on rivet bracelet. Excellent condition, 2021 full set.",
+    "category": "Watches",
+    "price": 298000,
+    "currency": "USD",
+    "image": null,
+    "available": false
+  },
+  {
+    "id": "sample-8",
+    "name": "Custom Name Pendant",
+    "description": "Commission — solid 10k or 14k, iced or polished. From $850.",
+    "category": "Custom",
+    "price": 85000,
+    "currency": "USD",
+    "image": null,
+    "available": true
+  }
+]

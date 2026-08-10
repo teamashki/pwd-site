@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Precision Watch &amp; Diamond — Fine Jewelry &amp; Timepieces</title>
+  <meta name="description" content="Curated luxury watches, fine jewelry, and custom commissions. Every piece authenticated in hand and photographed in house." />
+  <meta property="og:title" content="Precision Watch &amp; Diamond — Fine Jewelry &amp; Timepieces" />
+  <meta property="og:description" content="Curated luxury watches, fine jewelry, and custom commissions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://precisionwd.com/" />
+  <meta property="og:image" content="https://precisionwd.com/images/brand/og-mark.png" />
+  <link rel="canonical" href="https://precisionwd.com/" />
+  <link rel="icon" type="image/svg+xml" href="/images/brand/mark.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <a class="brand" href="#top">
+    <img class="brand-mark" src="/images/brand/mark.svg" alt="Precision Watch &amp; Diamond logo" width="44" height="44" />
+    <span class="brand-lines">
+      <span class="brand-line1">Precision</span>
+      <span class="brand-line2">Watch &amp; Diamond</span>
+    </span>
+  </a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="#collection">Collection</a>
+    <a href="#past-work">Past Work</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Contact</a>
+  </nav>
+  <a class="header-cta" href="#collection">View Collection</a>
+</header>
+
+<main>
+
+  <!-- ——— Hero ——— -->
+  <section class="hero">
+    <div class="hero-masthead">
+      <span data-bind="brandShort">Precision WD</span>
+      <span data-bind="tagline">Fine Jewelry · Timepieces · Custom</span>
+    </div>
+    <h1 class="hero-headline" id="hero-headline">
+      Pieces chosen the way you'd choose them&nbsp;— <em>slowly, and in person.</em>
+    </h1>
+    <p class="hero-dek" data-bind="heroDek">
+      Every watch and stone in our collection is sourced, authenticated, and
+      photographed by us before it's offered to you. What you see is what arrives.
+    </p>
+    <div class="hero-actions">
+      <a class="button-solid" href="#collection">Explore the Collection</a>
+      <a class="button-quiet" href="#visit">Commission a Piece</a>
+    </div>
+    <div class="hero-plates">
+      <figure>
+        <img src="/images/hero3.jpg" alt="Graduated diamond tennis necklace in a presentation box" />
+        <figcaption>Jewelry</figcaption>
+      </figure>
+      <figure>
+        <img src="/images/hero4.jpg" alt="Radiant-cut diamond solitaire engagement ring" style="object-position: 72% center" />
+        <figcaption>Engagement</figcaption>
+      </figure>
+      <figure>
+        <img src="/images/sapphire-custom.jpg" alt="Custom sapphire and diamond ring in a Precision Watch &amp; Diamond box" />
+        <figcaption>Custom</figcaption>
+      </figure>
+    </div>
+    <ul class="hero-assurances" aria-label="Assurances">
+      <li>Authenticated in hand</li>
+      <li>Ships fully insured</li>
+      <li>Custom commissions</li>
+    </ul>
+  </section>
+
+  <!-- ——— Collection ——— -->
+  <section class="section" id="collection">
+    <div class="section-head">
+      <p class="eyebrow">Current Collection</p>
+      <h2>Available now</h2>
+      <p class="section-dek">
+        Live from our register — when a piece sells, in store or online, it's
+        marked here within minutes.
+      </p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter by category" id="filters"></div>
+    <div class="inventory-grid" id="inventory-grid" aria-live="polite"></div>
+    <p class="collection-note" id="collection-note" hidden>
+      Showing sample pieces — the live collection appears here once the register is connected.
+    </p>
+  </section>
+
+  <!-- ——— Past work ——— -->
+  <section class="section section-tinted" id="past-work">
+    <div class="section-head">
+      <p class="eyebrow">Past Work</p>
+      <h2>Sold pieces &amp; commissions</h2>
+      <p class="section-dek">
+        A record of what has passed through our hands — and what we can build or source for you next.
+      </p>
+    </div>
+    <div class="gallery-row" id="gallery-row"></div>
+  </section>
+
+  <!-- ——— Reviews ——— -->
+  <section class="section" id="reviews">
+    <div class="section-head">
+      <p class="eyebrow">From Our Customers</p>
+      <h2>In their words</h2>
+    </div>
+    <div class="reviews-grid" id="reviews-grid"></div>
+  </section>
+
+  <!-- ——— About ——— -->
+  <section class="section section-tinted" id="about">
+    <div class="about-inner">
+      <p class="eyebrow">About</p>
+      <h2 data-bind="aboutHeading">A collection, not a warehouse.</h2>
+      <p class="about-body" data-bind="aboutBody">
+        We built this business one deal at a time — on marketplace messages,
+        referrals, and repeat customers who trust what we put our name on.
+      </p>
+    </div>
+  </section>
+
+  <!-- ——— Contact ——— -->
+  <section class="section" id="visit">
+    <div class="section-head">
+      <p class="eyebrow">Contact</p>
+      <h2>Start a conversation</h2>
+      <p class="section-dek" data-bind="contactNote">
+        Fastest response is by DM or email. In-person viewings by appointment.
+      </p>
+    </div>
+    <div class="contact-row" id="contact-row"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <span data-bind="brandName">Precision Watch &amp; Diamond</span>
+  <span id="footer-year"></span>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
