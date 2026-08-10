@@ -83,10 +83,19 @@ let allItems = [];
 let activeFilter = 'All';
 let inquiryEmail = '';
 
+const pageSize = () => (window.matchMedia('(max-width: 820px)').matches ? 4 : 8);
+let visibleCount = pageSize();
+
 function renderInventory() {
   const grid = document.getElementById('inventory-grid');
-  const items =
+  const filtered =
     activeFilter === 'All' ? allItems : allItems.filter((i) => i.category === activeFilter);
+  const items = filtered.slice(0, visibleCount);
+
+  const wrap = document.getElementById('view-more-wrap');
+  wrap.hidden = filtered.length <= visibleCount;
+  document.getElementById('view-more-count').textContent =
+    `Showing ${Math.min(visibleCount, filtered.length)} of ${filtered.length} pieces`;
 
   grid.innerHTML = items
     .map((item) => {
@@ -142,7 +151,13 @@ document.getElementById('filters').addEventListener('click', (e) => {
   const chip = e.target.closest('[data-filter]');
   if (!chip) return;
   activeFilter = chip.dataset.filter;
+  visibleCount = pageSize();
   renderFilters();
+  renderInventory();
+});
+
+document.getElementById('view-more').addEventListener('click', () => {
+  visibleCount += pageSize();
   renderInventory();
 });
 

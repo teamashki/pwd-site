@@ -342,6 +342,34 @@ a { color: inherit; }
 }
 .piece-link:hover { border-bottom-color: var(--emerald); }
 
+.view-more-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 56px;
+}
+.view-more {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid var(--hairline);
+  color: var(--ink);
+  padding: 16px 42px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+.view-more:hover { border-color: var(--ink); }
+.view-more-count {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--taupe-light);
+  margin: 0;
+}
+
 .collection-note {
   text-align: center;
   color: var(--taupe-light);
