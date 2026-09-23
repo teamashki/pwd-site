@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{DESCRIPTION}}" />
+  <meta property="og:title" content="{{TITLE}}" />
+  <meta property="og:description" content="{{DESCRIPTION}}" />
+  <meta property="og:type" content="product" />
+  <meta property="og:url" content="{{URL}}" />
+  <meta property="og:image" content="{{IMAGE}}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="{{URL}}" />
+  <link rel="icon" type="image/svg+xml" href="/images/brand/mark.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">{{JSONLD}}</script>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="/">
+    <img class="brand-mark" src="/images/brand/mark.svg" alt="Precision Watch &amp; Diamond logo" width="44" height="44" />
+    <span class="brand-lines">
+      <span class="brand-line1">Precision</span>
+      <span class="brand-line2">Watch &amp; Diamond</span>
+    </span>
+  </a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/#collection">Collection</a>
+    <a href="/#past-work">Past Work</a>
+    <a href="/#reviews">Reviews</a>
+    <a href="/#visit">Contact</a>
+  </nav>
+  <a class="header-cta" href="/#collection">View Collection</a>
+</header>
+
+<main class="pdp" id="pdp">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/#collection">Collection</a>
+    <span aria-hidden="true">/</span>
+    <span id="crumb-category"></span>
+  </nav>
+
+  <div class="pdp-grid">
+    <div class="pdp-gallery">
+      <div class="pdp-viewer">
+        <div class="pdp-stage" id="pdp-stage" tabindex="0" aria-label="Photos — use arrow keys to browse"></div>
+        <button class="pdp-arrow pdp-prev" id="pdp-prev" type="button" aria-label="Previous photo" hidden>&#8592;</button>
+        <button class="pdp-arrow pdp-next" id="pdp-next" type="button" aria-label="Next photo" hidden>&#8594;</button>
+        <span class="pdp-counter" id="pdp-counter" hidden></span>
+        <span class="piece-status sold" id="pdp-sold" hidden>Sold</span>
+      </div>
+      <div class="pdp-thumbs" id="pdp-thumbs"></div>
+    </div>
+
+    <div class="pdp-info">
+      <p class="eyebrow" id="pdp-category"></p>
+      <h1 class="pdp-name" id="pdp-name"></h1>
+      <p class="pdp-price" id="pdp-price"></p>
+      <p class="pdp-desc" id="pdp-desc"></p>
+
+      <div class="pdp-actions">
+        <button class="button-solid" id="pdp-buy" type="button">Purchase</button>
+        <a class="button-quiet" id="pdp-inquire" href="#">Inquire About This Piece</a>
+      </div>
+      <p class="pdp-status" id="pdp-status" role="status"></p>
+      <p class="pdp-note" id="pdp-note">Secure checkout by Square</p>
+
+      <ul class="pdp-assurances">
+        <li><strong>Authenticated in hand</strong><span>Inspected and verified by us before it's listed.</span></li>
+        <li><strong>Ships fully insured</strong><span>Packaged securely and insured door to door.</span></li>
+        <li><strong>Private viewings</strong><span>Video consultations and in-person viewings by appointment.</span></li>
+      </ul>
+
+      <div class="pdp-links">
+        <button class="text-link" id="pdp-share" type="button">Share This Piece</button>
+        <a class="text-link" id="pdp-instagram" href="#" target="_blank" rel="noopener" hidden>Message Us on Instagram</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="section section-tinted" id="related">
+  <div class="section-head">
+    <p class="eyebrow">The Collection</p>
+    <h2 id="related-heading">You may also like</h2>
+  </div>
+  <div class="inventory-grid" id="related-grid"></div>
+  <div class="related-foot">
+    <a class="button-quiet" href="/#collection">View Full Collection</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>Precision Watch &amp; Diamond</span>
+  <span id="footer-year"></span>
+</footer>
+
+<script id="piece-data" type="application/json">{{DATA}}</script>
+<script src="/common.js"></script>
+<script src="/product.js"></script>
+</body>
+</html>

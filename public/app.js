@@ -1,25 +1,5 @@
-/* Lumière & Co. — front-end. All content is data-driven:
-   site.config.json (brand), /api/inventory (Square), /api/reviews, /api/gallery. */
-
-const esc = (s) =>
-  String(s ?? '').replace(/[&<>"']/g, (c) =>
-    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
-  );
-
-const money = (cents, currency) =>
-  cents == null
-    ? 'Inquire'
-    : new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: currency || 'USD',
-        maximumFractionDigits: cents % 100 === 0 ? 0 : 2,
-      }).format(cents / 100);
-
-async function getJSON(url) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`${url} → ${res.status}`);
-  return res.json();
-}
+/* Home page. All content is data-driven: site.config.json (brand),
+   /api/inventory (Square), /api/reviews, /api/gallery. Helpers live in common.js. */
 
 /* ——— brand config ——— */
 
@@ -79,12 +59,15 @@ function renderContact(cfg) {
 
 /* ——— inventory ——— */
 
-let allItems = [];
-let activeFilter = 'All';
-let inquiryEmail = '';
-
 const pageSize = () => (window.matchMedia('(max-width: 820px)').matches ? 4 : 8);
-let visibleCount = pageSize();
+
+// Returning from a piece page restores the filter, expanded count, and scroll position
+const returning = history.state && history.state.collection;
+if (returning) history.scrollRestoration = 'manual';
+
+let allItems = [];
+let activeFilter = returning ? returning.filter : 'All';
+let visibleCount = returning ? returning.visible : pageSize();
 
 function renderInventory() {
   const grid = document.getElementById('inventory-grid');
@@ -97,35 +80,7 @@ function renderInventory() {
   document.getElementById('view-more-count').textContent =
     `Showing ${Math.min(visibleCount, filtered.length)} of ${filtered.length} pieces`;
 
-  grid.innerHTML = items
-    .map((item) => {
-      const media = item.image
-        ? `<img src="${esc(item.image)}" alt="${esc(item.name)}" loading="lazy" />`
-        : `<span class="placeholder-mark" aria-hidden="true"><img src="/images/brand/mark.svg" alt="" loading="lazy" /><em>Photo coming soon</em></span>`;
-      const status = item.available
-        ? ''
-        : '<span class="piece-status sold">Sold</span>';
-      const buy = item.available
-        ? `<button class="piece-link" data-buy="${esc(item.id)}">Purchase</button>`
-        : '';
-      const inquire = inquiryEmail
-        ? `<a class="piece-link" href="mailto:${esc(inquiryEmail)}?subject=${encodeURIComponent('Inquiry: ' + item.name)}">Inquire</a>`
-        : '';
-      return `
-      <article class="piece" data-category="${esc(item.category)}">
-        <div class="piece-media">${media}${status}</div>
-        <div class="piece-info">
-          <span class="piece-category">${esc(item.category)}</span>
-          <h3 class="piece-name">${esc(item.name)}</h3>
-          ${item.description ? `<p class="piece-desc">${esc(item.description)}</p>` : ''}
-          <div class="piece-foot">
-            <span class="piece-price">${item.available ? money(item.price, item.currency) : 'Sold'}</span>
-            <span class="piece-actions">${buy}${inquire}</span>
-          </div>
-        </div>
-      </article>`;
-    })
-    .join('');
+  grid.innerHTML = items.map(pieceCard).join('');
 }
 
 function renderFilters() {
@@ -142,9 +97,11 @@ function renderFilters() {
 async function loadInventory() {
   const data = await getJSON('/api/inventory');
   allItems = data.items || [];
+  if (!allItems.some((i) => i.category === activeFilter)) activeFilter = 'All';
   document.getElementById('collection-note').hidden = data.source !== 'sample';
   renderFilters();
   renderInventory();
+  if (returning) window.scrollTo(0, returning.y);
 }
 
 document.getElementById('filters').addEventListener('click', (e) => {
@@ -161,31 +118,12 @@ document.getElementById('view-more').addEventListener('click', () => {
   renderInventory();
 });
 
-document.getElementById('inventory-grid').addEventListener('click', async (e) => {
-  const btn = e.target.closest('[data-buy]');
-  if (!btn) return;
-  btn.disabled = true;
-  const original = btn.textContent;
-  btn.textContent = 'One moment…';
-  try {
-    const res = await fetch('/api/checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ itemId: btn.dataset.buy }),
-    });
-    const data = await res.json();
-    if (res.ok && data.url) {
-      window.location.href = data.url;
-      return;
-    }
-    throw new Error(data.error || 'Checkout unavailable');
-  } catch {
-    btn.textContent = original;
-    btn.disabled = false;
-    if (inquiryEmail) {
-      window.location.href = `mailto:${inquiryEmail}?subject=${encodeURIComponent('Purchase inquiry')}`;
-    }
-  }
+document.getElementById('inventory-grid').addEventListener('click', (e) => {
+  if (!e.target.closest('a.piece')) return;
+  history.replaceState(
+    { collection: { filter: activeFilter, visible: visibleCount, y: window.scrollY } },
+    ''
+  );
 });
 
 /* ——— gallery & reviews ——— */
@@ -228,12 +166,9 @@ async function loadReviews() {
 
 /* ——— boot ——— */
 
-document.getElementById('footer-year').textContent = `© ${new Date().getFullYear()}`;
-
 (async () => {
   try {
-    const cfg = await loadConfig();
-    inquiryEmail = (cfg.contact && cfg.contact.email) || '';
+    await loadConfig();
   } catch (e) {
     console.error(e);
   }
